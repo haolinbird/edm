@@ -19,6 +19,8 @@ class MailTemplate
     const INDEX_SCALE = 'index_scale';
     // APP留存指标
     const INDEX_APP_KEEP = 'index_app_keep';
+    // 专场流量指标
+    const INDEX_SPECIAL_FLOW = 'index_special_flow';
     // 首页金刚指标
     const INDEX_HOME_JINGANG = 'index_home_jingang';
     // 流量指标
@@ -97,6 +99,29 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">第7日留存率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">15日留存率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">30日留存率</th>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_SPECIAL_FLOW:
+                $html .= '<tr><th scope="col" colspan="12" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">专场流量指标</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">新人专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">秒杀专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">必买专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">上新专场</th>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场UV</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内商品点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内用户CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场UV</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内商品点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内用户CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场UV</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内商品点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内用户CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场UV</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内商品点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场内用户CTR</th>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_FLOW:
@@ -240,6 +265,22 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-7日访问用户，在当天的留存</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-15日访问用户，在当天的留存</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-30日访问用户，在当天的留存</td>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_SPECIAL_FLOW:
+                $html .= '<tr>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">专场页访问用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">点击了专场内商品的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;"></td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">专场页访问用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">点击了专场内商品的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;"></td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">专场页访问用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">点击了专场内商品的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;"></td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">专场页访问用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">点击了专场内商品的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;"></td>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_FLOW:

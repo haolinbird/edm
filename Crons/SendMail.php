@@ -177,6 +177,41 @@ class SendMail
                     // --APP留存指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
+                    // 处理专场流量指标
+                    // --查询昨日专场流量数据报表
+                    $fields = [
+                        'new_customer_uv',
+                        'new_customer_click_uv',
+                        'new_customer_ctr',
+                        'seckilling_uv',
+                        'seckilling_click_uv',
+                        'seckilling_ctr',
+                        'must_buy_uv',
+                        'must_buy_click_uv',
+                        'must_buy_ctr',
+                        'today_uv',
+                        'today_click_uv',
+                        'today_ctr',
+                    ];
+                    $specialFlowData = \Model\ReportSpecialFlowIndex::instance()->getData($date, $fields);
+                    // 计算 新人专场 CTR
+                    $specialFlowData['new_customer_ctr'] = round($specialFlowData['new_customer_click_uv']/$specialFlowData['new_customer_uv'], 4);
+                    // 计算 秒杀专场 CTR
+                    $specialFlowData['seckilling_ctr'] = round($specialFlowData['seckilling_click_uv']/$specialFlowData['seckilling_uv'], 4);
+                    // 计算 必买专场 CTR
+                    $specialFlowData['must_buy_ctr'] = round($specialFlowData['must_buy_click_uv']/$specialFlowData['must_buy_uv'], 4);
+                    // 计算 上新专场 CTR
+                    $specialFlowData['today_ctr'] = round($specialFlowData['today_click_uv']/$specialFlowData['today_uv'], 4);
+                    // --获取专场流量指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_SPECIAL_FLOW);
+                    // --获取专场流量指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($specialFlowData);
+                    // --获取专场流量指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_SPECIAL_FLOW);
+
+                    // --专场流量指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
                     // 处理流量指标
                     // --查询昨日流量数据报表
                     $fields = [
