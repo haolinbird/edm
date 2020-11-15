@@ -177,6 +177,31 @@ class SendMail
                     // --APP留存指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
+                    // 处理流量指标
+                    // --查询昨日流量数据报表
+                    $fields = [
+                        'home_main_view_uv',
+                        'home_main_click_uv',
+                        'home_main_ctr',
+                        'search_view_uv',
+                        'search_click_uv',
+                        'search_ctr',
+                    ];
+                    $flowData = \Model\ReportFlowIndex::instance()->getData($date, $fields);
+                    // 计算 首页用户数CTR home_main_ctr
+                    $flowData['home_main_ctr'] = round($flowData['home_main_click_uv']/$flowData['home_main_view_uv'], 4);
+                    // 计算 搜索用户CTR CTR search_ctr
+                    $flowData['search_ctr'] = round($flowData['search_click_uv']/$flowData['search_view_uv'], 4);
+                    // --获取流量指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_FLOW);
+                    // --获取流量指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($flowData);
+                    // --获取流量指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_FLOW);
+
+                    // --流量指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
                     // 处理首页金刚区指标
                     // --查询昨日首页金刚区数据报表
                     $fields = [

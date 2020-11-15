@@ -21,6 +21,8 @@ class MailTemplate
     const INDEX_APP_KEEP = 'index_app_keep';
     // 首页金刚指标
     const INDEX_HOME_JINGANG = 'index_home_jingang';
+    // 流量指标
+    const INDEX_FLOW = 'index_flow';
 
 
     /**
@@ -93,6 +95,21 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">第7日留存率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">15日留存率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">30日留存率</th>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_FLOW:
+                $html .= '<tr><th scope="col" colspan="6" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">流量指标</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">首页流量指标</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">搜索流量指标</th>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">首页浏览用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">首页点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">首页用户数CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">搜索浏览用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">搜索点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">搜索用户CTR</th>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_HOME_JINGANG:
@@ -198,6 +215,16 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-7日访问用户，在当天的留存</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-15日访问用户，在当天的留存</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-30日访问用户，在当天的留存</td>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_FLOW:
+                $html .= '<tr>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">访问了首页的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">在首页产生了点击的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">首页点击用户数/访问了首页的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">打开过搜索结果页的用户</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">在搜索页产生了点击的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">搜索点击用户数/访问了搜索的用户数</td>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_HOME_JINGANG:

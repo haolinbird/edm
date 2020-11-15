@@ -1,27 +1,34 @@
 <?php
 /**
- * Class TestModel
+ * Class ReportFlowIndex
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-04-30 10:28:30
+ * @author Lin Hao <lin.hao@xiaonianyu.com>
+ * @date 2020-11-15 20:28:30
  */
 
 namespace Model;
 
 /**
- * 测试Model.
+ * 流量指标 Model.
  */
-class TestModel extends \Model\DbBase
+class ReportFlowIndex extends \Model\DbBase
 {
     const DB_NAME    = 'default';
-    const TABLE_NAME = 'test';
+    const TABLE_NAME = 'report_flow_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';
 
     public static $fields = array (
-            'id',
-            'test_name',
-            'create_time',
+        'id',
+        'report_date',
+        'home_main_view_uv',
+        'home_main_click_uv',
+        'home_main_ctr',
+        'search_view_uv',
+        'search_click_uv',
+        'search_ctr',
+        'is_send',
+        'last_send_time',
     );
 
     /**
@@ -55,22 +62,19 @@ class TestModel extends \Model\DbBase
     }
 
     /**
-     * 根据 name 获取一条数据
+     * 获取指定日期数据
      *
-     * @param string $testName 测试名称.
-     * @param  mixed $fields   查询字段.
+     * @param string $date   统计日期
+     * @param string $fields 查询字段
      *
-     * @return mixed
+     * @return array
+     * @throws \Exception
      */
-    public function getInfoByName($testName, $fields = '*')
+    public function getData($date, $fields = '*')
     {
-        return 555;
-
-        if (\Util\Validate::isEmpty($testName)) {
-            return array();
-        }
-
-        $cond = ['test_name' => $testName];
+        $cond = [
+            'report_date' => $date
+        ];
 
         $columns = $this->getSelectColumns($fields);
 
