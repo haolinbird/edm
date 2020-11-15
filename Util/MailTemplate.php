@@ -23,6 +23,8 @@ class MailTemplate
     const INDEX_HOME_JINGANG = 'index_home_jingang';
     // 流量指标
     const INDEX_FLOW = 'index_flow';
+    // 首页主推专场指标
+    const INDEX_HOME_RECOMMEND = 'index_home_recommend';
 
 
     /**
@@ -139,6 +141,29 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
                 $html .= '</tr>';
                 break;
+            case self::INDEX_HOME_RECOMMEND:
+                $html .= '<tr><th scope="col" colspan="12" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">首页主推专场</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">新人专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">秒杀专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">必买专场</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">上新专场</th>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '</tr>';
+                break;
             default:
                 break;
         }
@@ -226,6 +251,8 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">在搜索页产生了点击的用户数</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">搜索点击用户数/访问了搜索的用户数</td>';
                 $html .= '</tr>';
+                break;
+            case self::INDEX_HOME_JINGANG:
                 break;
             case self::INDEX_HOME_JINGANG:
                 break;

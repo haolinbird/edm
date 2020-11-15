@@ -243,6 +243,42 @@ class SendMail
                     // --首页金刚指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
+                    // 处理首页主推专场指标
+                    // --查询昨日首页主推专场数据报表
+                    $fields = [
+                        'new_customer_view_uv',
+                        'new_customer_click_uv',
+                        'new_customer_ctr',
+                        'seckilling_view_uv',
+                        'seckilling_click_uv',
+                        'seckilling_ctr',
+                        'must_buy_view_uv',
+                        'must_buy_click_uv',
+                        'must_buy_ctr',
+                        'today_view_uv',
+                        'today_click_uv',
+                        'today_ctr',
+                    ];
+                    $homeRecommendData = \Model\ReportHomeRecommendSpecial::instance()->getData($date, $fields);
+                    // --计算 新人专场-CTR new_customer_ctr
+                    $homeRecommendData['new_customer_ctr'] = round($homeRecommendData['new_customer_click_uv']/$homeRecommendData['new_customer_view_uv'], 4);
+                    // --计算 秒杀专场-CTR seckilling_ctr
+                    $homeRecommendData['seckilling_ctr'] = round($homeRecommendData['seckilling_click_uv']/$homeRecommendData['seckilling_view_uv'], 4);
+                    // --计算 必买专场-CTR new_customer_ctr
+                    $homeRecommendData['must_buy_ctr'] = round($homeRecommendData['must_buy_click_uv']/$homeRecommendData['must_buy_view_uv'], 4);
+                    // --计算 上新专场-CTR today_ctr
+                    $homeRecommendData['today_ctr'] = round($homeRecommendData['today_click_uv']/$homeRecommendData['today_view_uv'], 4);
+
+                    // --获取首页主推专场指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_HOME_RECOMMEND);
+                    // --获取首页主推专场指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($homeRecommendData);
+                    // --获取首页主推专场指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_HOME_RECOMMEND);
+
+                    // --首页主推专场指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
                     // 组装邮件 HTML 内容
                     $html = str_replace('{#table_body}', $tableContent, $html);
 
