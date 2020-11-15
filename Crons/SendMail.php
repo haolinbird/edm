@@ -54,13 +54,11 @@ class SendMail
                         'gross_profit',
                         'gross_margin',
                     ];
-                    var_dump(33);
                     $salesData = \Model\XnyStatisticsModel::instance()->getData($date, $fields);
-                    var_dump(12);
                     // 计算 付款转化率 payment_rate
-                    $salesData['payment_rate'] = round($salesData['pay_orders']/$salesData['create_orders'], 2).'%';
+                    $salesData['payment_rate'] = (round($salesData['pay_orders']/$salesData['create_orders'], 4) * 100).'%';
                     // 计算 订单转化率 order_conversion_rate
-                    $salesData['order_conversion_rate'] = round($salesData['pay_orders']/$salesData['dau'], 4).'%';
+                    $salesData['order_conversion_rate'] = (round($salesData['pay_orders']/$salesData['dau'], 4) * 100).'%';
                     // 计算 笔单价 per_order_price
                     $salesData['per_order_price'] = round($salesData['gmv']/$salesData['pay_orders'], 2);
                     // 计算 人均订单价 per_capita_orders
