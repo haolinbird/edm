@@ -77,8 +77,8 @@ class Mail
         // 邮件正文是否为html编码 注意此处是一个方法
         $mail->isHTML(true);
         // 设置收件人邮箱地址
-        $mail->addAddress('41114872@qq.com');
         $mail->addAddress('lin.hao@xiaonianyu.com');
+        // $mail->addAddress('yue.wei@xiaonianyu.com');
         // 添加多个收件人 则多次调用方法即可
         //$mail->addAddress('87654321@163.com');
         // 添加该邮件的主题

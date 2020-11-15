@@ -15,6 +15,8 @@ class MailTemplate
 {
     // 销售指标
     const INDEX_SALES = 'index_sales';
+    // APP留存指标
+    const INDEX_APP_KEEP = 'index_app_keep';
 
     /**
      * 报表表格模板
@@ -28,9 +30,7 @@ class MailTemplate
         $html .= '<title>'.$emailTitle.'</title>';
         $html .= '</head>';
         $html .= '<body>';
-        $html .= '<table id="travel">';
         $html .= '{#table_body}';
-        $html .= '</table>';
         $html .= '</body>';
         $html .= '</html>';
 
@@ -42,7 +42,8 @@ class MailTemplate
      */
     public static function headTemplate($index)
     {
-        $html = '<thead>';
+        $html = '<table id="travel">';
+        $html .= '<thead>';
 
         switch ($index) {
             case self::INDEX_SALES:
@@ -61,6 +62,18 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">人均订单数</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利率</th>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_APP_KEEP:
+                $html .= '<tr><th scope="col" colspan="7" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">APP留存指标</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">启动用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">次日留存用户占比</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">次日留存率</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">第3日留存率</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">第7日留存率</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">15日留存率</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">30日留存率</th>';
                 $html .= '</tr>';
                 break;
             default:
@@ -113,11 +126,24 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">毛利/实付金额</td>';
                 $html .= '</tr>';
                 break;
+            case self::INDEX_APP_KEEP:
+                $html .= '<tr>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">当天打开客户端的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">当天打开了客户端的用户中，前一天也打开了客户端的用户占比</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-1日访问用户，在当天的留存</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-3日访问用户，在当天的留存</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-7日访问用户，在当天的留存</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-15日访问用户，在当天的留存</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-30日访问用户，在当天的留存</td>';
+                $html .= '</tr>';
+                break;
             default:
                 break;
         }
 
         $html .= '</tfoot>';
+        $html .= '</table>';
+        $html .= '<br/>';
 
         return $html;
     }

@@ -32,8 +32,13 @@ class SendMail
                     // 获取昨日日期
                     //$date = date('Y-m-d H:i:s', strtotime('yesterday'));
                     $date = date('Y-m-d H:i:s', strtotime('yesterday'));
+
+
                     // --获取 HTML 主体内容
                     $html = \Util\MailTemplate::mainTemplate('整体日报');
+
+                    // 初始化报表表格内容
+                    $tableContent = '';
 
                     // 处理销售指标
                     // --查询昨日销售数据报表
@@ -54,7 +59,7 @@ class SendMail
                         'gross_profit',
                         'gross_margin',
                     ];
-                    $salesData = \Model\XnyStatisticsModel::instance()->getData($date, $fields);
+                    $salesData = \Model\ReportSalesIndexModel::instance()->getData($date, $fields);
                     // 计算 付款转化率 payment_rate
                     $salesData['payment_rate'] = (round($salesData['pay_orders']/$salesData['create_orders'], 4) * 100).'%';
                     // 计算 订单转化率 order_conversion_rate
@@ -87,6 +92,55 @@ class SendMail
                     $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_SALES);
 
                     // --销售指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
+                    // 处理留存指标
+                    // --查询昨日留存数据报表
+                    $fields = [
+                        'dau',
+                        'keep_next_day_user',
+                        'keep_next_day_l_uv',
+                        'keep_next_day_t_uv',
+                        'keep_third_day_l_uv',
+                        'keep_third_day_t_uv',
+                        'keep_seven_day_l_uv',
+                        'keep_seven_day_t_uv',
+                        'keep_fifteen_day_l_uv',
+                        'keep_fifteen_day_t_uv',
+                        'keep_thirty_day_l_uv',
+                        'keep_thirty_day_t_uv',
+                    ];
+                    $appKeepData = \Model\ReportAppKeepIndexModel::instance()->getData($date, $fields);
+                    // 计算 次日留存用户占比
+                    $appKeepData['keep_next_day_precent'] = (round($appKeepData['keep_next_day_user']/$appKeepData['dau'], 4) * 100).'%';
+                    // 计算 次日留存率
+                    $appKeepData['keep_next_day_rate'] = $appKeepData['keep_next_day_t_uv'] > 0 ? (round($appKeepData['keep_next_day_l_uv']/$appKeepData['keep_next_day_t_uv'], 4) * 100).'%' : '0%';
+                    // 计算 三日留存率
+                    $appKeepData['keep_third_day_rate'] = $appKeepData['keep_third_day_t_uv'] > 0 ? (round($appKeepData['keep_third_day_l_uv']/$appKeepData['keep_third_day_t_uv'], 4) * 100).'%' : '0%';
+                    // 计算 七日留存率
+                    $appKeepData['keep_seven_day_rate'] = $appKeepData['keep_seven_day_t_uv'] > 0 ? (round($appKeepData['keep_seven_day_l_uv']/$appKeepData['keep_seven_day_t_uv'], 4) * 100).'%' : '0%';
+                    // 计算 十五日留存率
+                    $appKeepData['keep_fifteen_day_rate'] = $appKeepData['keep_fifteen_day_t_uv'] > 0 ? (round($appKeepData['keep_fifteen_day_l_uv']/$appKeepData['keep_fifteen_day_t_uv'], 4) * 100).'%' : '0%';
+                    // 计算 三十日留存率
+                    $appKeepData['keep_thirty_day_rate'] = $appKeepData['keep_thirty_day_t_uv'] > 0 ? (round($appKeepData['keep_thirty_day_l_uv']/$appKeepData['keep_thirty_day_t_uv'], 4) * 100).'%' : '0%';
+
+                    $appKeepReportData = [
+                        'dau'                   => $appKeepData['dau'],
+                        'keep_next_day_precent' => $appKeepData['keep_next_day_precent'],
+                        'keep_next_day_rate'    => $appKeepData['keep_next_day_rate'],
+                        'keep_third_day_rate'   => $appKeepData['keep_third_day_rate'],
+                        'keep_seven_day_rate'   => $appKeepData['keep_seven_day_rate'],
+                        'keep_fifteen_day_rate' => $appKeepData['keep_fifteen_day_rate'],
+                        'keep_thirty_day_rate'  => $appKeepData['keep_thirty_day_rate'],
+                    ];
+                    // --获取APP留存指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_APP_KEEP);
+                    // --获取APP留存指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($appKeepReportData);
+                    // --获取APP留存指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_APP_KEEP);
+
+                    // --APP留存指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
                     // 组装邮件 HTML 内容

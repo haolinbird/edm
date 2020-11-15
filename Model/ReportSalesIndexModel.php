@@ -11,7 +11,7 @@ namespace Model;
 /**
  * 测试Model.
  */
-class XnyStatisticsModel extends \Model\DbBase
+class ReportSalesIndexModel extends \Model\DbBase
 {
     const DB_NAME    = 'default';
     const TABLE_NAME = 'report_sales_index';
