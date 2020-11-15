@@ -49,12 +49,7 @@ class SendMail
                         'pay_child_orders',
                         'pay_orders',
                         'create_orders',
-                        //'payment_rate',
-                        //'order_conversion_rate',
                         'pay_users',
-                        //'new_users',
-                        //'per_order_price',
-                        //'per_capita_orders',
                         'dau',
                         'gross_profit',
                         'gross_margin',
@@ -92,6 +87,45 @@ class SendMail
                     $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_SALES);
 
                     // --销售指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
+                    // 处理规模指标
+                    // --查询昨日规模数据报表
+                    $fields = [
+                        'total_register_users',
+                        'new_register_users',
+                        'dau',
+                        'start_cnt',
+                        'device_cnt',
+                        'first_device_cnt',
+                        'login_user_cnt',
+                        'add_shopcar_cnt',
+                    ];
+                    $scaleData = \Model\ReportScaleIndex::instance()->getData($date, $fields);
+                    // 计算 加购转化率 add_shopcar_rate
+                    $scaleData['add_shopcar_rate'] = (round($scaleData['add_shopcar_cnt']/$scaleData['login_user_cnt'], 4) * 100).'%';
+                    // 计算 访问频次 visit_frequency
+                    $scaleData['visit_frequency'] = round($scaleData['start_cnt']/$scaleData['device_cnt'], 4);
+
+                    $scaleReportData = [
+                        'total_register_users' => $scaleData['total_register_users'],
+                        'new_register_users'   => $scaleData['new_register_users'],
+                        'dau'                  => $scaleData['dau'],
+                        'device_cnt'           => $scaleData['device_cnt'],
+                        'first_device_cnt'     => $scaleData['first_device_cnt'],
+                        'login_user_cnt'       => $scaleData['login_user_cnt'],
+                        'add_shopcar_cnt'      => $scaleData['add_shopcar_cnt'],
+                        'add_shopcar_rate'     => $scaleData['add_shopcar_rate'],
+                        'visit_frequency'      => $scaleData['visit_frequency'],
+                    ];
+                    // --获取规模指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_SCALE);
+                    // --获取规模指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($scaleReportData);
+                    // --获取规模指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_SCALE);
+
+                    // --销售规模表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
                     // 处理留存指标

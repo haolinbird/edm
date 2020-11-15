@@ -15,10 +15,13 @@ class MailTemplate
 {
     // 销售指标
     const INDEX_SALES = 'index_sales';
+    // 规模指标
+    const INDEX_SCALE = 'index_scale';
     // APP留存指标
     const INDEX_APP_KEEP = 'index_app_keep';
     // 首页金刚指标
     const INDEX_HOME_JINGANG = 'index_home_jingang';
+
 
     /**
      * 报表表格模板
@@ -64,6 +67,20 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">人均订单数</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利率</th>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_SCALE:
+                $html .= '<tr><th scope="col" colspan="9" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">规模指标</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">累计当日注册用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">新注册用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">DAU</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">启动设备数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">激活设备数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">登录用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">加购用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">加购转化率</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">访问频次</th>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_APP_KEEP:
@@ -157,6 +174,19 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">付款订单数/付款用户数</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;"></td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">毛利/实付金额</td>';
+                $html .= '</tr>';
+                break;
+            case self::INDEX_SCALE:
+                $html .= '<tr>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">截止当日注册用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">当天新注册的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">当日访问用户数（包括App、h5和小程序）</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">当日打开过App的设备数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">首次打开App的设备数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">打开App并有登录态或者重新登录的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">客户端加购的用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">加购用户数/登录用户数</td>';
+                $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">启动次数/启动设备数</td>';
                 $html .= '</tr>';
                 break;
             case self::INDEX_APP_KEEP:

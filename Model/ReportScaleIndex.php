@@ -1,9 +1,9 @@
 <?php
 /**
- * Class ReportHomeJinGangIndexModel
+ * Class ReportScaleIndex
  *
  * @author Lin Hao <lin.hao@xiaonianyu.com>
- * @date 2020-11-15 20:28:30
+ * @date 2020-11-16 02:15:30
  */
 
 namespace Model;
@@ -11,33 +11,29 @@ namespace Model;
 /**
  * 测试Model.
  */
-class ReportHomeJinGangIndexModel extends \Model\DbBase
+class ReportScaleIndex extends \Model\DbBase
 {
     const DB_NAME    = 'default';
-    const TABLE_NAME = 'report_home_jingang_index';
+    const TABLE_NAME = 'report_scale_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';
 
     public static $fields = array (
-        'id',
-        'date',
-        'limit_view_uv',
-        'limit_click_uv',
-        'limit_ctr',
-        'brand_view_uv',
-        'brand_click_uv',
-        'brand_ctr',
-        'fashion_view_uv',
-        'fashion_click_uv',
-        'fashion_ctr',
-        'par_view_uv',
-        'par_click_uv',
-        'par_ctr',
-        'versatile_view_uv',
-        'versatile_click_uv',
-        'versatile_ctr',
-        'is_send',
-        'last_send_time',
+            'id',
+            'date',
+            'create_time',
+            'total_register_users',
+            'new_register_users',
+            'dau',
+            'start_cnt',
+            'device_cnt',
+            'first_device_cnt',
+            'login_user_cnt',
+            'add_shopcar_cnt',
+            'add_shopcar_rate',
+            'visit_frequency',
+            'is_send',
+            'last_send_time',
     );
 
     /**
@@ -51,7 +47,7 @@ class ReportHomeJinGangIndexModel extends \Model\DbBase
     {
         return parent::instance($singleton);
     }
-
+    
     /**
      * 构造查询字段(别名可选).
      *
@@ -59,7 +55,7 @@ class ReportHomeJinGangIndexModel extends \Model\DbBase
      *
      * @return mixed
      */
-    public function getSelectColumns($fields)
+    public function getSelectColumns($fields = '*')
     {
         if ($fields === '*') {
             $fields = implode(',', \Db\Connection::instance()->quoteObj(self::$fields));
@@ -89,5 +85,4 @@ class ReportHomeJinGangIndexModel extends \Model\DbBase
 
         return $this->db(self::DB_NAME, self::SELECT_METHOD_READ)->select($columns)->from(self::TABLE_NAME)->where($cond)->queryRow();
     }
-
 }
