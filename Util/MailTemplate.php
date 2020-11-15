@@ -58,7 +58,7 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">付款转化率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">订单转化率</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">付款用户数</th>';
-                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">笔单价</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">AOV</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">人均订单数</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利</th>';
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">毛利率</th>';
