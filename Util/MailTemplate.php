@@ -17,6 +17,8 @@ class MailTemplate
     const INDEX_SALES = 'index_sales';
     // APP留存指标
     const INDEX_APP_KEEP = 'index_app_keep';
+    // 首页金刚指标
+    const INDEX_HOME_JINGANG = 'index_home_jingang';
 
     /**
      * 报表表格模板
@@ -42,7 +44,7 @@ class MailTemplate
      */
     public static function headTemplate($index)
     {
-        $html = '<table id="travel">';
+        $html = '<table id="travel" style="width:100%;">';
         $html .= '<thead>';
 
         switch ($index) {
@@ -76,6 +78,33 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">30日留存率</th>';
                 $html .= '</tr>';
                 break;
+            case self::INDEX_HOME_JINGANG:
+                $html .= '<tr><th scope="col" colspan="15" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">首页金刚区</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">限时特价</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">大牌运动</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">潮人服饰</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">平价鞋包</th>';
+                $html .= '<th scope="col" colspan="3" style="font-weight:bold;background:#91c5d4;">百搭服饰</th>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '</tr>';
+                break;
             default:
                 break;
         }
@@ -90,6 +119,10 @@ class MailTemplate
      */
     public static function indicatorTemplate($data)
     {
+        if (empty($data)) {
+            return '';
+        }
+
         $html = '<tr>';
 
         foreach ($data as $value) {
@@ -136,6 +169,8 @@ class MailTemplate
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-15日访问用户，在当天的留存</td>';
                 $html .= '<td style="text-align:center;background:#d7e1c5;font-size: 10px;">T-30日访问用户，在当天的留存</td>';
                 $html .= '</tr>';
+                break;
+            case self::INDEX_HOME_JINGANG:
                 break;
             default:
                 break;

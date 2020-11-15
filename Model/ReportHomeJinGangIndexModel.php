@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ReportSalesIndexModel
+ * Class ReportHomeJinGangIndexModel
  *
  * @author Lin Hao <lin.hao@xiaonianyu.com>
  * @date 2020-11-15 20:28:30
@@ -11,30 +11,31 @@ namespace Model;
 /**
  * 测试Model.
  */
-class ReportSalesIndexModel extends \Model\DbBase
+class ReportHomeJinGangIndexModel extends \Model\DbBase
 {
     const DB_NAME    = 'default';
-    const TABLE_NAME = 'report_sales_index';
+    const TABLE_NAME = 'report_home_jingang_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';
 
     public static $fields = array (
         'id',
         'date',
-        'gmv',
-        'pay_amount',
-        'sales',
-        'pay_child_orders',
-        'pay_orders',
-        'create_orders',
-        'payment_rate',
-        'order_conversion_rate',
-        'pay_users',
-        'new_users',
-        'per_order_price',
-        'per_capita_orders',
-        'gross_profit',
-        'gross_margin',
+        'limit_view_uv',
+        'limit_click_uv',
+        'limit_ctr',
+        'brand_view_uv',
+        'brand_click_uv',
+        'brand_ctr',
+        'fashion_view_uv',
+        'fashion_click_uv',
+        'fashion_ctr',
+        'par_view_uv',
+        'par_click_uv',
+        'par_ctr',
+        'versatile_view_uv',
+        'versatile_click_uv',
+        'versatile_ctr',
         'is_send',
         'last_send_time',
     );
@@ -80,7 +81,7 @@ class ReportSalesIndexModel extends \Model\DbBase
     public function getData($date, $fields = '*')
     {
         $cond = [
-            'statis_date' => $date
+            'date' => $date
         ];
 
         $columns = $this->getSelectColumns($fields);

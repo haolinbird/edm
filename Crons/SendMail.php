@@ -143,6 +143,47 @@ class SendMail
                     // --APP留存指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
+                    // 处理首页金刚区指标
+                    // --查询昨日首页金刚区数据报表
+                    $fields = [
+                        'limit_view_uv',
+                        'limit_click_uv',
+                        'limit_ctr',
+                        'brand_view_uv',
+                        'brand_click_uv',
+                        'brand_ctr',
+                        'fashion_view_uv',
+                        'fashion_click_uv',
+                        'fashion_ctr',
+                        'par_view_uv',
+                        'par_click_uv',
+                        'par_ctr',
+                        'versatile_view_uv',
+                        'versatile_click_uv',
+                        'versatile_ctr',
+                    ];
+                    $homeJinGangData = \Model\ReportHomeJinGangIndexModel::instance()->getData($date, $fields);
+                    // --计算 限时特价-CTR limit_ctr
+                    $homeJinGangData['limit_ctr'] = ($homeJinGangData['limit_ctr'] * 100).'%';
+                    // --计算 大牌运动-CTR brand_ctr
+                    $homeJinGangData['brand_ctr'] = ($homeJinGangData['brand_ctr'] * 100).'%';
+                    // --计算 潮人服饰-CTR fashion_ctr
+                    $homeJinGangData['fashion_ctr'] = ($homeJinGangData['fashion_ctr'] * 100).'%';
+                    // --计算 平价鞋包-CTR par_ctr
+                    $homeJinGangData['par_ctr'] = ($homeJinGangData['par_ctr'] * 100).'%';
+                    // --计算 百搭服饰-CTR versatile_ctr
+                    $homeJinGangData['versatile_ctr'] = ($homeJinGangData['versatile_ctr'] * 100).'%';
+
+                    // --获取首页金刚指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_HOME_JINGANG);
+                    // --获取首页金刚指标内容
+                    $tbody = \Util\MailTemplate::indicatorTemplate($homeJinGangData);
+                    // --获取首页金刚指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_HOME_JINGANG);
+
+                    // --首页金刚指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
                     // 组装邮件 HTML 内容
                     $html = str_replace('{#table_body}', $tableContent, $html);
 
