@@ -27,6 +27,8 @@ class MailTemplate
     const INDEX_FLOW = 'index_flow';
     // 首页主推专场指标
     const INDEX_HOME_RECOMMEND = 'index_home_recommend';
+    // 首页专场列表指标
+    const INDEX_HOME_SPECIAL_LIST = 'index_home_special_list';
 
 
     /**
@@ -189,6 +191,16 @@ class MailTemplate
                 $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
                 $html .= '</tr>';
                 break;
+            case self::INDEX_HOME_SPECIAL_LIST:
+                $html .= '<tr><th scope="col" colspan="5" style="font-weight:bold;background:#66a9bd;padding:5px;border:1px solid #fff;">首页专场列表指标</th></tr>';
+                $html .= '<tr>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">序号</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">专场名称</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">曝光用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">点击用户数</th>';
+                $html .= '<th scope="col" style="font-weight:bold;background:#91c5d4;">CTR</th>';
+                $html .= '</tr>';
+                break;
             default:
                 break;
         }
@@ -206,6 +218,7 @@ class MailTemplate
         if (empty($data)) {
             return '';
         }
+
 
         $html = '<tr>';
 
@@ -295,7 +308,9 @@ class MailTemplate
                 break;
             case self::INDEX_HOME_JINGANG:
                 break;
-            case self::INDEX_HOME_JINGANG:
+            case self::INDEX_HOME_RECOMMEND:
+                break;
+            case self::INDEX_HOME_SPECIAL_LIST:
                 break;
             default:
                 break;

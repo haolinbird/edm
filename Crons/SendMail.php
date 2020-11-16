@@ -195,13 +195,13 @@ class SendMail
                     ];
                     $specialFlowData = \Model\ReportSpecialFlowIndex::instance()->getData($date, $fields);
                     // 计算 新人专场 CTR
-                    $specialFlowData['new_customer_ctr'] = round($specialFlowData['new_customer_click_uv']/$specialFlowData['new_customer_uv'], 4);
+                    $specialFlowData['new_customer_ctr'] = (round($specialFlowData['new_customer_click_uv']/$specialFlowData['new_customer_uv'], 4) * 100).'%';
                     // 计算 秒杀专场 CTR
-                    $specialFlowData['seckilling_ctr'] = round($specialFlowData['seckilling_click_uv']/$specialFlowData['seckilling_uv'], 4);
+                    $specialFlowData['seckilling_ctr'] = (round($specialFlowData['seckilling_click_uv']/$specialFlowData['seckilling_uv'], 4) * 100).'%';
                     // 计算 必买专场 CTR
-                    $specialFlowData['must_buy_ctr'] = round($specialFlowData['must_buy_click_uv']/$specialFlowData['must_buy_uv'], 4);
+                    $specialFlowData['must_buy_ctr'] = (round($specialFlowData['must_buy_click_uv']/$specialFlowData['must_buy_uv'], 4) * 100).'%';
                     // 计算 上新专场 CTR
-                    $specialFlowData['today_ctr'] = round($specialFlowData['today_click_uv']/$specialFlowData['today_uv'], 4);
+                    $specialFlowData['today_ctr'] = (round($specialFlowData['today_click_uv']/$specialFlowData['today_uv'], 4) * 100).'%';
                     // --获取专场流量指标表头
                     $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_SPECIAL_FLOW);
                     // --获取专场流量指标内容
@@ -224,9 +224,9 @@ class SendMail
                     ];
                     $flowData = \Model\ReportFlowIndex::instance()->getData($date, $fields);
                     // 计算 首页用户数CTR home_main_ctr
-                    $flowData['home_main_ctr'] = round($flowData['home_main_click_uv']/$flowData['home_main_view_uv'], 4);
+                    $flowData['home_main_ctr'] = (round($flowData['home_main_click_uv']/$flowData['home_main_view_uv'], 4) * 100).'%';
                     // 计算 搜索用户CTR CTR search_ctr
-                    $flowData['search_ctr'] = round($flowData['search_click_uv']/$flowData['search_view_uv'], 4);
+                    $flowData['search_ctr'] = (round($flowData['search_click_uv']/$flowData['search_view_uv'], 4) * 100).'%';
                     // --获取流量指标表头
                     $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_FLOW);
                     // --获取流量指标内容
@@ -296,13 +296,13 @@ class SendMail
                     ];
                     $homeRecommendData = \Model\ReportHomeRecommendSpecial::instance()->getData($date, $fields);
                     // --计算 新人专场-CTR new_customer_ctr
-                    $homeRecommendData['new_customer_ctr'] = round($homeRecommendData['new_customer_click_uv']/$homeRecommendData['new_customer_view_uv'], 4);
+                    $homeRecommendData['new_customer_ctr'] = (round($homeRecommendData['new_customer_click_uv']/$homeRecommendData['new_customer_view_uv'], 4) * 100).'%';
                     // --计算 秒杀专场-CTR seckilling_ctr
-                    $homeRecommendData['seckilling_ctr'] = round($homeRecommendData['seckilling_click_uv']/$homeRecommendData['seckilling_view_uv'], 4);
+                    $homeRecommendData['seckilling_ctr'] = (round($homeRecommendData['seckilling_click_uv']/$homeRecommendData['seckilling_view_uv'], 4) * 100).'%';
                     // --计算 必买专场-CTR new_customer_ctr
-                    $homeRecommendData['must_buy_ctr'] = round($homeRecommendData['must_buy_click_uv']/$homeRecommendData['must_buy_view_uv'], 4);
+                    $homeRecommendData['must_buy_ctr'] = (round($homeRecommendData['must_buy_click_uv']/$homeRecommendData['must_buy_view_uv'], 4) * 100).'%';
                     // --计算 上新专场-CTR today_ctr
-                    $homeRecommendData['today_ctr'] = round($homeRecommendData['today_click_uv']/$homeRecommendData['today_view_uv'], 4);
+                    $homeRecommendData['today_ctr'] = (round($homeRecommendData['today_click_uv']/$homeRecommendData['today_view_uv'], 4) * 100).'%';
 
                     // --获取首页主推专场指标表头
                     $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_HOME_RECOMMEND);
@@ -312,6 +312,57 @@ class SendMail
                     $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_HOME_RECOMMEND);
 
                     // --首页主推专场指标表格 HTML
+                    $tableContent .= $thead.$tbody.$tfoot;
+
+                    // 处理首页专场列表指标
+                    // --查询昨日首页专场列表数据报表
+                    $fields = [
+                        'position',
+                        'special_id',
+                        'special_name',
+                        'view_uv',
+                        'click_uv',
+                        'ctr',
+                    ];
+                    $homeSpecialListData = \Model\ReportHomeSpecialListIndex::instance()->getDatas($date, $fields);
+
+                    // 查询专场名称
+                    $materialIds = [];
+                    foreach ($homeSpecialListData as $value) {
+                        $materialIds[] = $value['special_id'];
+                    }
+                    $materialIds = array_unique($materialIds);
+
+                    if ($materialIds) {
+                        $specialNames = \Model\IdeaTopic::instance()->getInfoByIds($materialIds);
+
+                    }
+
+                    // 组装报表数据
+                    $homeSpecialListReportData = [];
+                    foreach ($homeSpecialListData as $value) {
+                        $homeSpecialListReportData[] = [
+                            'position' => $value['position'],
+                            // 拼装专场名称
+                            'special_name' => !empty($specialNames[$value['special_id']]) ? $specialNames[$value['special_id']]['title'] : '未知',
+                            'view_uv' => $value['view_uv'],
+                            'click_uv' => $value['click_uv'],
+                            // 计算 CTR
+                            'ctr' => round($value['click_uv']/$value['view_uv'], 4),
+                        ];
+                    }
+
+                    // --获取首页专场列表指标表头
+                    $thead = \Util\MailTemplate::headTemplate(\Util\MailTemplate::INDEX_HOME_SPECIAL_LIST);
+                    // --获取首页专场列表指标内容
+                    $tbody = '';
+                    foreach ($homeSpecialListReportData as $row) {
+                        $tbody .= \Util\MailTemplate::indicatorTemplate($row);
+                    }
+                    // --获取首页专场列表指标表尾
+                    $tfoot = \Util\MailTemplate::footTemplate(\Util\MailTemplate::INDEX_HOME_SPECIAL_LIST);
+
+                    // --获取首页专场列表指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
                     // 组装邮件 HTML 内容

@@ -29,6 +29,18 @@ class Db
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'utf8\'',
                 \PDO::ATTR_TIMEOUT => 2,
             ),
+        ),
+        'xiaonianyu' => array(
+            'host'         => 'bi-data-xny.rwlb.rds.aliyuncs.com',
+            'port'         => 3306,
+            'db'           => 'xiaonianyu',
+            'user'         => 'bi_read',
+            'password'     => 'Fr2s9AK^CJ',
+            'confirm_link' => true,
+            'options'      => array(
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'utf8\'',
+                \PDO::ATTR_TIMEOUT => 2,
+            ),
         )
     );
 
