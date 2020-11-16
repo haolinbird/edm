@@ -9,7 +9,7 @@
 namespace Model;
 
 /**
- * 测试Model.
+ * 规模指标 Model.
  */
 class ReportScaleIndex extends \Model\DbBase
 {
@@ -19,21 +19,21 @@ class ReportScaleIndex extends \Model\DbBase
     const SELECT_METHOD_WRITE = 'write';
 
     public static $fields = array (
-            'id',
-            'date',
-            'create_time',
-            'total_register_users',
-            'new_register_users',
-            'dau',
-            'start_cnt',
-            'device_cnt',
-            'first_device_cnt',
-            'login_user_cnt',
-            'add_shopcar_cnt',
-            'add_shopcar_rate',
-            'visit_frequency',
-            'is_send',
-            'last_send_time',
+        'id',
+        'report_date',
+        'create_time',
+        'total_register_users',
+        'new_register_users',
+        'dau',
+        'start_cnt',
+        'device_cnt',
+        'first_device_cnt',
+        'login_user_cnt',
+        'add_shopcar_cnt',
+        'add_shopcar_rate',
+        'visit_frequency',
+        'is_send',
+        'last_send_time',
     );
 
     /**
@@ -78,7 +78,7 @@ class ReportScaleIndex extends \Model\DbBase
     public function getData($date, $fields = '*')
     {
         $cond = [
-            'date' => $date
+            'report_date' => $date
         ];
 
         $columns = $this->getSelectColumns($fields);
