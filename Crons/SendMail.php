@@ -348,7 +348,7 @@ class SendMail
                             'view_uv' => $value['view_uv'],
                             'click_uv' => $value['click_uv'],
                             // 计算 CTR
-                            'ctr' => round($value['click_uv']/$value['view_uv'], 4),
+                            'ctr' => (round($value['click_uv']/$value['view_uv'], 4) * 100).'%',
                         ];
                     }
 
