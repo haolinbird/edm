@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ReportAppKeepIndexModel
+ * Class ReportAppKeepIndex
  *
  * @author Lin Hao <lin.hao@xiaonianyu.com>
  * @date 2020-11-15 20:28:30
@@ -9,9 +9,9 @@
 namespace Model;
 
 /**
- * 测试Model.
+ * App留存指标 Model.
  */
-class ReportAppKeepIndexModel extends \Model\DbBase
+class ReportAppKeepIndex extends \Model\DbBase
 {
     const DB_NAME    = 'default';
     const TABLE_NAME = 'report_app_keep_index';
@@ -20,7 +20,7 @@ class ReportAppKeepIndexModel extends \Model\DbBase
 
     public static $fields = array (
         'id',
-        'date',
+        'report_date',
         'dau',
         'keep_next_day_user',
         'keep_next_day_precent',
@@ -40,7 +40,7 @@ class ReportAppKeepIndexModel extends \Model\DbBase
         'keep_thirty_day_t_uv',
         'keep_thirty_day_rate',
         'is_send',
-        'send_time'
+        'last_send_time'
     );
 
     /**
@@ -85,7 +85,7 @@ class ReportAppKeepIndexModel extends \Model\DbBase
     public function getData($date, $fields = '*')
     {
         $cond = [
-            'date' => $date
+            'report_date' => $date
         ];
 
         $columns = $this->getSelectColumns($fields);

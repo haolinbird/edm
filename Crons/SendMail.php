@@ -144,7 +144,7 @@ class SendMail
                         'keep_thirty_day_l_uv',
                         'keep_thirty_day_t_uv',
                     ];
-                    $appKeepData = \Model\ReportAppKeepIndexModel::instance()->getData($date, $fields);
+                    $appKeepData = \Model\ReportAppKeepIndex::instance()->getData($date, $fields);
                     // 计算 次日留存用户占比
                     $appKeepData['keep_next_day_precent'] = (round($appKeepData['keep_next_day_user']/$appKeepData['dau'], 4) * 100).'%';
                     // 计算 次日留存率
