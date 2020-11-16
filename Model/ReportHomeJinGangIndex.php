@@ -13,7 +13,7 @@ namespace Model;
  */
 class ReportHomeJinGangIndex extends \Model\DbBase
 {
-    const DB_NAME    = 'default';
+    const DB_NAME = 'default';
     const TABLE_NAME = 'report_home_jingang_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';

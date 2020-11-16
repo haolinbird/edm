@@ -13,7 +13,7 @@ namespace Model;
  */
 class IdeaTopic extends \Model\DbBase
 {
-    const DB_NAME    = 'xiaonianyu';
+    const DB_NAME = 'xiaonianyu';
     const TABLE_NAME = 'idea_topic';
     const PRIMARY_KEY = 'id';
     const SELECT_METHOD_READ = 'read';

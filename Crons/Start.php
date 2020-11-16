@@ -1,6 +1,6 @@
 <?php
 /**
- * php Start.php --class=SendMail --arg1=foo --arg2="bars"
+ * php Start.php --class=ClassName --arg1=foo --arg2="bars"
  */
 
 namespace {

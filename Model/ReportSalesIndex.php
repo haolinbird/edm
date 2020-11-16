@@ -13,7 +13,7 @@ namespace Model;
  */
 class ReportSalesIndex extends \Model\DbBase
 {
-    const DB_NAME    = 'default';
+    const DB_NAME = 'default';
     const TABLE_NAME = 'report_sales_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';

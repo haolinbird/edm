@@ -9,11 +9,11 @@
 namespace Model;
 
 /**
- * 测试Model.
+ * 首页专场列表指标 Model.
  */
 class ReportHomeSpecialListIndex extends \Model\DbBase
 {
-    const DB_NAME    = 'default';
+    const DB_NAME = 'default';
     const TABLE_NAME = 'report_home_special_list_index';
     const SELECT_METHOD_READ = 'read';
     const SELECT_METHOD_WRITE = 'write';
