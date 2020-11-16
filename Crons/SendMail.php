@@ -12,6 +12,8 @@ class SendMail
     // 邮件类型
     // --整体日报
     const TYPE_OVERALL = 'overall';
+    // --首页专场CTR
+    const TYPE_HOME_SPECIAL_CTR = 'home_special_ctr';
     // --ECPM日报
     const TYPE_ECMP = 'ecpm';
 
@@ -30,9 +32,7 @@ class SendMail
                 // 整体日报
                 case self::TYPE_OVERALL:
                     // 获取昨日日期
-                    //$date = date('Y-m-d H:i:s', strtotime('yesterday'));
                     $date = date('Y-m-d H:i:s', strtotime('yesterday'));
-
 
                     // --获取 HTML 主体内容
                     $html = \Util\MailTemplate::mainTemplate('整体日报');
@@ -54,7 +54,7 @@ class SendMail
                         'gross_profit',
                         'gross_margin',
                     ];
-                    $salesData = \Model\ReportSalesIndexModel::instance()->getData($date, $fields);
+                    $salesData = \Model\ReportSalesIndex::instance()->getData($date, $fields);
                     // 计算 付款转化率 payment_rate
                     $salesData['payment_rate'] = (round($salesData['pay_orders']/$salesData['create_orders'], 4) * 100).'%';
                     // 计算 订单转化率 order_conversion_rate
@@ -314,6 +314,27 @@ class SendMail
                     // --首页主推专场指标表格 HTML
                     $tableContent .= $thead.$tbody.$tfoot;
 
+                    // 组装邮件 HTML 内容
+                    $html = str_replace('{#table_body}', $tableContent, $html);
+
+                    $subject = '小年鱼-整体日报-'.date('Y-m-d', strtotime('yesterday'));
+
+                    // 发送邮件
+                    $sendResponse = \Util\Mail::instance()->sendMail($subject, $html);
+
+                    // 更新发送结果
+                    break;
+                // 首页专场CTR
+                case self::TYPE_HOME_SPECIAL_CTR:
+                    // 获取昨日日期
+                    $date = date('Y-m-d H:i:s', strtotime('yesterday'));
+
+                    // --获取 HTML 主体内容
+                    $html = \Util\MailTemplate::mainTemplate('整体日报');
+
+                    // 初始化报表表格内容
+                    $tableContent = '';
+
                     // 处理首页专场列表指标
                     // --查询昨日首页专场列表数据报表
                     $fields = [
@@ -368,12 +389,11 @@ class SendMail
                     // 组装邮件 HTML 内容
                     $html = str_replace('{#table_body}', $tableContent, $html);
 
-                    $subject = '小年鱼整体日报-'.date('Y-m-d', strtotime('yesterday'));
+                    $subject = '小年鱼-首页专场CTR报表-'.date('Y-m-d', strtotime('yesterday'));
 
                     // 发送邮件
                     $sendResponse = \Util\Mail::instance()->sendMail($subject, $html);
 
-                    // 更新发送结果
                     break;
                 // ECPM报表
                 case self::TYPE_ECMP:
