@@ -73,7 +73,8 @@ class ReportHomeSpecialListIndex extends \Model\DbBase
     public function getDatas($date, $fields = '*')
     {
         $cond = [
-            'report_date' => $date
+            'report_date' => $date,
+            'view_uv >' => 1000
         ];
 
         $columns = $this->getSelectColumns($fields);
