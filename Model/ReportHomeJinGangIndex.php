@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ReportHomeJinGangIndexModel
+ * Class ReportHomeJinGangIndex
  *
  * @author Lin Hao <lin.hao@xiaonianyu.com>
  * @date 2020-11-15 20:28:30
@@ -9,9 +9,9 @@
 namespace Model;
 
 /**
- * 测试Model.
+ * 首页金刚区指标 Model.
  */
-class ReportHomeJinGangIndexModel extends \Model\DbBase
+class ReportHomeJinGangIndex extends \Model\DbBase
 {
     const DB_NAME    = 'default';
     const TABLE_NAME = 'report_home_jingang_index';
@@ -20,7 +20,7 @@ class ReportHomeJinGangIndexModel extends \Model\DbBase
 
     public static $fields = array (
         'id',
-        'date',
+        'report_date',
         'limit_view_uv',
         'limit_click_uv',
         'limit_ctr',
@@ -82,7 +82,7 @@ class ReportHomeJinGangIndexModel extends \Model\DbBase
     public function getData($date, $fields = '*')
     {
         $cond = [
-            'date' => $date
+            'report_date' => $date
         ];
 
         $columns = $this->getSelectColumns($fields);

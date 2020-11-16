@@ -256,7 +256,7 @@ class SendMail
                         'versatile_click_uv',
                         'versatile_ctr',
                     ];
-                    $homeJinGangData = \Model\ReportHomeJinGangIndexModel::instance()->getData($date, $fields);
+                    $homeJinGangData = \Model\ReportHomeJinGangIndex::instance()->getData($date, $fields);
                     // --计算 限时特价-CTR limit_ctr
                     $homeJinGangData['limit_ctr'] = ($homeJinGangData['limit_ctr'] * 100).'%';
                     // --计算 大牌运动-CTR brand_ctr
