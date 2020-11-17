@@ -24,7 +24,7 @@ class Mail
     // 收件人组-管理组
     const ADDRESSEE_GROUP_MANAGER = 'manager';
     // 收件人组-运营组
-    const ADDRESSEE_GROUP_OPERATORS = 'operators';
+    const ADDRESSEE_GROUP_OPERATORS = 'yunying';
     // 收件人组-测试组
     const ADDRESSEE_GROUP_TESTER = 'tester';
     // 收件人组-维护组

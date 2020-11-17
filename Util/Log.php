@@ -29,7 +29,7 @@ class Log
             $message = date('Y-m-d H:i:s').":\t {$data}\n";
             $filename = $filename.date('Ymd');
         } else {
-            $message = "{$data}\n";
+            $message = date('Y-m-d H:i:s').":\t {$data}\n";
             $path .= $filename;
             if (! file_exists($path)) {
                 mkdir($path, 0777, true);

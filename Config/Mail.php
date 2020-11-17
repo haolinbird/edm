@@ -58,6 +58,6 @@ class Mail {
 
     // 维护者邮件组
     public $maintainGroup = [
-        'lin.hao@xiaonianyu.com''
+        'lin.hao@xiaonianyu.com'
     ];
 }

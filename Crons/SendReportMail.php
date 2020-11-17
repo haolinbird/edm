@@ -47,7 +47,6 @@ class SendReportMail
         \Util\Debug::promptOutput('report_date -> '.$date);
 
         try {
-            throw new \Exception('test exception');
             switch ($type) {
                 // 整体日报
                 case self::TYPE_OVERALL:
@@ -134,7 +133,7 @@ class SendReportMail
             }
         } catch (\Exception $e) {
             // 构造异常信息
-            $errMessage = "mail_type -> ".$type.",\t report_date -> ".$date.",\t run exception -> ".$e->getMessage();
+            $errMessage = "mail_type -> ".$type.", report_date -> ".$date.", run exception -> ".$e->getMessage();
 
             // 输出异常信息
             \Util\Debug::promptOutput($errMessage);
