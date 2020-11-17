@@ -2,8 +2,8 @@
 /**
  * Class ReportHomeRecommendSpecial
  *
- * @author Lin Hao <lin.hao@xiaonianyu.com>
- * @date 2020-11-16 02:15:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 02:15:30
  */
 
 namespace Model;

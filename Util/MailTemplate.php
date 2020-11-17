@@ -1,9 +1,9 @@
 <?php
 /**
- * MAIL 邮件模板工具类
+ * 邮件HTML模板类
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-05-06 10:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Util;
@@ -33,6 +33,10 @@ class MailTemplate
 
     /**
      * 报表表格模板
+     *
+     * @param string $emailTitle HTML标题
+     *
+     * @return string
      */
     public static function mainTemplate($emailTitle)
     {
@@ -51,7 +55,11 @@ class MailTemplate
     }
 
     /**
-     * 报表表格模板
+     * 报表表格thead模板
+     *
+     * @param string $index 报表指标类型
+     *
+     * @return string
      */
     public static function headTemplate($index)
     {
@@ -212,8 +220,12 @@ class MailTemplate
 
     /**
      * 报表表格模板
+     *
+     * @param array $data 报表数据
+     *
+     * @return string
      */
-    public static function indicatorTemplate($data)
+    public static function indicatorTemplate(array $data)
     {
         if (empty($data)) {
             return '';
@@ -232,7 +244,11 @@ class MailTemplate
     }
 
     /**
-     * 报表尾部模板
+     * 报表表格tfoot模板
+     *
+     * @param string $index 报表指标类型
+     *
+     * @return string
      */
     public static function footTemplate($index)
     {

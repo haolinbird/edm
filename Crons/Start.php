@@ -1,6 +1,11 @@
 <?php
 /**
+ * Cron 启动入口脚本
+ *
  * php Start.php --class=ClassName --arg1=foo --arg2="bars"
+ *
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace {

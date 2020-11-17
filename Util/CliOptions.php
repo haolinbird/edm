@@ -1,10 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: jm-yf
- * Date: 17/11/24
- * Time: 下午2:58
+ * CliOptions
+ *
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
+
 namespace Util;
 
 class CliOptions

@@ -1,9 +1,9 @@
 <?php
 /**
- * 日志组件配置文件
+ * 业务层基类
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-05-06 10:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Module;
@@ -68,26 +68,6 @@ abstract class ModuleBase
         } else {
             return \Redis\RedisMultiCache::getInstance($endpoint);
         }
-    }
-
-    /**
-     * 记录日志.
-     *
-     * @param string $message  内容.
-     * @param string $category 类别.
-     *
-     * @return void
-     */
-    public function log($message, $category = '')
-    {
-        $path = ROOT_PATH."logs/".$category;
-        if (! file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-        $filename = date('Ymd');
-        $file     = $path . "/{$filename}.log";
-        $message  = date('Y-m-d H:i:s') . "\t $message \n";
-        error_log($message, 3, $file);
     }
 
 }

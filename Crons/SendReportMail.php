@@ -2,8 +2,8 @@
 /**
  * php Start.php --class=SendReportMail --type=overall --rc=maintain --date=2020-11-15
  *
- * @author Lin Hao <lin.hao@xiaonianyu.com>
- * @date 2020-11-15 20:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-15 20:28:30
  */
 
 namespace Crons;
@@ -47,6 +47,7 @@ class SendReportMail
         \Util\Debug::promptOutput('report_date -> '.$date);
 
         try {
+            throw new \Exception('test exception');
             switch ($type) {
                 // 整体日报
                 case self::TYPE_OVERALL:

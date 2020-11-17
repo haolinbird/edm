@@ -2,8 +2,8 @@
 /**
  * 邮件配置
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-11-15 10:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Config;
@@ -42,17 +42,12 @@ class Mail {
 
     // 公司管理者邮件组
     public $managementGroup = [
-//        'xiaochen.gou@xiaonianyu.com',
-//        'heng.luo@xiaonianyu.com',
-//        'longfei.chen@xiaonianyu.com',
-//        'jiaming.chen@xiaonianyu.com',
-//        'siqi.li@xiaonianyu.com',
-        'yue.wei@xiaonianyu.com',
+        'xnydata@xiaonianyu.com'
     ];
 
     // 公司运营部邮箱组
     public $operationsGroup = [
-        'lin.hao@xiaonianyu.com',
+        'yunying@xiaonianyu.com',
     ];
 
     // 测试用户邮件组
@@ -63,6 +58,6 @@ class Mail {
 
     // 维护者邮件组
     public $maintainGroup = [
-        'lin.hao@xiaonianyu.com'
+        'lin.hao@xiaonianyu.com''
     ];
 }

@@ -2,8 +2,8 @@
 /**
  * Class Debug
  *
- * @author Lin Hao <lin.hao@xiaonianyu.com>
- * @date 2020-11-15 20:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Util;

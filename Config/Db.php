@@ -2,8 +2,8 @@
 /**
  * 数据库配置文件
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-05-06 10:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Config;
@@ -46,17 +46,17 @@ class Db
 
     public $write = array(
         'default' => array(
-            'host'         => '10.9.93.199',
+            'host'         => '47.108.106.227',
             'port'         => 3306,
-            'db'           => 'unionoil_user',
-            'user'         => 'user_write',
-            'password'     => 'QBK56RxZ#MA*RFb@',
+            'db'           => 'xny_statistics',
+            'user'         => 'maimanman',
+            'password'     => 'maimanman0901',
             'confirm_link' => true,
             'options'      => array(
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'utf8\'',
                 \PDO::ATTR_TIMEOUT => 2,
             ),
-        )
+        ),
     );
 
 }

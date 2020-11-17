@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require_once('/Users/haolin/work/oilunion/edm/Vendor/autoload.php');
+require_once(ROOT_PATH.'/Vendor/autoload.php');
 
 /**
  * MAIL 邮件发送工具类

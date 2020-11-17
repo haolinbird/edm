@@ -1,9 +1,9 @@
 <?php
 /**
- *  日志工具类
+ * 日志工具类
  *
- * @author Hao Lin <haolinbird@163.com>
- * @date 2020-05-06 10:28:30
+ * @author Lin Hao<lin.hao@xiaonianyu.com>
+ * @date   2020-11-16 20:28:30
  */
 
 namespace Util;
